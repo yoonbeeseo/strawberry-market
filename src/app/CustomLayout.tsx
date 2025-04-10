@@ -75,14 +75,17 @@ const CustomLayout = ({ children }: PropsWithChildren) => {
                 console.log("검색 ㄱㄱ");
               }
             }}
-            className={twMerge("pl-0", Keyword.focused && "text-theme")}
+            className={twMerge(
+              "pl-0 border-none",
+              Keyword.focused && "text-theme"
+            )}
             containerClassName="flex-1"
             contentClassName="h-15"
           />
         </div>
       </header>
 
-      <main>{children}</main>
+      <main className="py-15">{children}</main>
 
       <nav className="border-t border-gray-200 fixed bottom-0 left-0 w-full bg-white z-10">
         <ul className="flex-row gap-0">
