@@ -2,7 +2,7 @@
 
 import { Form, Loading, SubmitButton, TextInput } from "@/components";
 import { AUTH } from "@/contexts";
-import { emailValidator, passwordValidator } from "@/utils";
+import { emailValidator, passwordValidator } from "../../../utils";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 

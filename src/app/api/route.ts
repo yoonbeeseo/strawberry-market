@@ -1,4 +1,4 @@
-import { dbService } from "@/lib";
+import { dbService } from "../../../lib";
 
 export async function GET(req: Request) {
   const snap = await dbService.collection("products").get();

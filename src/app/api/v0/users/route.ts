@@ -1,6 +1,6 @@
 //! GET => 회원 전체
 
-import { authService, dbService, response } from "@/lib";
+import { authService, dbService, response } from "../../../../../lib";
 
 //! POST => 회원 추가
 export async function POST(req: Request) {

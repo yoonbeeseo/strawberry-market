@@ -1,5 +1,5 @@
 import axios from "axios";
-import { response } from "@/lib";
+import { response } from "../../../../../lib";
 
 export async function POST(req: Request) {
   const body = await req.json(); // body

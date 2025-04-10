@@ -2,7 +2,7 @@
 
 import { Form, Loading, SubmitButton, TextInput, useModal } from "@/components";
 import { AUTH } from "@/contexts";
-import { isNum } from "@/utils";
+import { isNum } from "../../../../utils";
 import { useCallback, useMemo, useState } from "react";
 
 const MyComponent = () => {

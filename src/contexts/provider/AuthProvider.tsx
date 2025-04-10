@@ -1,6 +1,6 @@
 "use client";
 
-import { authService } from "@/lib";
+import { authService } from "../../../lib";
 import { AUTH } from "../react";
 import {
   PropsWithChildren,
@@ -10,7 +10,7 @@ import {
   useTransition,
 } from "react";
 import axios from "axios";
-import { isKorCharacter } from "@/utils";
+import { isKorCharacter } from "../../../utils";
 import SplashScreen from "@/app/loading";
 
 const AuthProvider = ({ children }: PropsWithChildren) => {

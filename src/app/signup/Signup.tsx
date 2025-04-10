@@ -5,7 +5,7 @@ import {
   korValidator,
   mobileValidator,
   passwordValidator,
-} from "@/utils";
+} from "../../../utils";
 import axios from "axios";
 import {
   useState,

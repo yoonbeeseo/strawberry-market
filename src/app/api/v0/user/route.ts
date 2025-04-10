@@ -1,4 +1,4 @@
-import { dbService, response } from "@/lib";
+import { dbService, response } from "../../../../../lib";
 import { cookies } from "next/headers";
 
 //! GET => user 정보 가져오는 곳
