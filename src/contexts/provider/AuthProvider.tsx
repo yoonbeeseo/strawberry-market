@@ -126,6 +126,26 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     []
   );
 
+  const onUpdate = useCallback(
+    (target: keyof User, value: any) =>
+      new Promise<PromiseResult>((ok) =>
+        startTransition(async () => {
+          try {
+            const { data } = await axios.patch("/api/v0/user", {
+              target,
+              value,
+              // uid: user?.uid,//! 1번 방법
+            });
+            setUser((prev) => prev && { ...prev, [target]: value });
+            ok(data);
+          } catch (error: any) {
+            ok({ success: false, message: error.response.data });
+          }
+        })
+      ),
+    []
+  );
+
   useEffect(() => {
     console.log({ user });
   }, [user]);
@@ -149,7 +169,15 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   }, []);
   return (
     <AUTH.context.Provider
-      value={{ user, initialized, isPending, signin, signout, signup }}
+      value={{
+        user,
+        initialized,
+        isPending,
+        signin,
+        signout,
+        signup,
+        onUpdate,
+      }}
     >
       {initialized ? children : <SplashScreen />}
     </AUTH.context.Provider>

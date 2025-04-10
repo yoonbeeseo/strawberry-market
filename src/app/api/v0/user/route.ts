@@ -40,5 +40,28 @@ export async function POST() {
 }
 
 //! PATCH => user 정보 수정하는 곳
+export async function PATCH(req: Request) {
+  const data = await req.json();
+  console.log(data, 45);
+
+  const auth = req.headers.get("authorization");
+  if (!auth) {
+    return response.error("no uid");
+  }
+  const uid = auth.split(" ")[1];
+  if (!uid || uid.length === 0) {
+    return response.error("no uid");
+  }
+
+  const { target, value } = data as { target: keyof User; value: any };
+
+  const ref = dbService.collection("users").doc(uid);
+  try {
+    await ref.update({ [target]: value });
+    return response.success<PromiseResult>({ success: true });
+  } catch (error: any) {
+    return response.error(error.message);
+  }
+}
 
 //! DELETE => user 탈퇴 곳
