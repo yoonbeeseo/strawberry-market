@@ -47,7 +47,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   // client 유저를 로그아웃
   //! server에서 쿠키 내용을 삭제
   const signout = useCallback(
-    () =>
+    (): Promise<PromiseResult> =>
       new Promise<PromiseResult>((ok) =>
         startTransition(async () => {
           try {
@@ -130,6 +130,23 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     console.log({ user });
   }, [user]);
 
+  const onTest = useCallback(async () => {
+    const idToken = await authService.currentUser?.getIdToken();
+    try {
+      console.log(axios.defaults.baseURL);
+      const { data } = await axios.get("api/v0/user", {
+        params: {
+          uid: authService.currentUser?.uid,
+        },
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
+      console.log(data);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }, []);
   return (
     <AUTH.context.Provider
       value={{ user, initialized, isPending, signin, signout, signup }}

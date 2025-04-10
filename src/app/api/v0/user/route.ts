@@ -11,6 +11,7 @@ export async function GET(req: Request) {
   if (!idToken || idToken.length === 0) {
     return response.error("아이디 토큰을 확인해주세요.");
   }
+
   const cookieStore = await cookies();
   cookieStore.set("idToken", idToken);
   //! cookieStore.get('idToken').value
@@ -34,6 +35,7 @@ export async function GET(req: Request) {
 export async function POST() {
   const cookieStore = await cookies();
   cookieStore.delete("idToken");
+  console.log("cookie deleted, user logged out");
   return response.success("id token bye-bye");
 }
 
